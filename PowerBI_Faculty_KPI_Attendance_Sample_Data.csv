@@ -1,0 +1,13 @@
+Program,Branch,Semester,Period,Subject,Total Students,Present,Absent,Time,Teacher,SMS Sent,Date
+B.Tech,Computer Science & Engineering,Semester 5,Period 1,Distributed Operating Systems,65,60,5,09:00 AM - 10:00 AM,Dr. Ramesh Sharma,Yes,2026-10-16
+B.Tech,Artificial Intelligence & Data Science,Semester 4,Period 2,Machine Learning & Neural Networks,60,56,4,10:00 AM - 11:00 AM,Prof. Ananya Iyer,Yes,2026-10-16
+B.Tech,Computer Science & Engineering,Semester 3,Period 3,Data Structures & Algorithms,62,59,3,11:15 AM - 12:15 PM,Dr. Yeshwanth Kumar,Yes,2026-10-16
+B.Tech,Electronics & Communication Engineering,Semester 5,Period 4,Digital Signal Processing,58,49,9,01:00 PM - 02:00 PM,Prof. Rajesh Verma,Yes,2026-10-16
+B.Tech,Information Technology,Semester 6,Period 5,Network & Cyber Security,64,61,3,02:00 PM - 03:00 PM,Dr. Priya Nair,Yes,2026-10-16
+B.Tech,Mechanical Engineering,Semester 6,Period 6,Robotics & Kinematics,55,48,7,03:15 PM - 04:15 PM,Prof. Vikram Reddy,No,2026-10-16
+B.Tech,Computer Science & Engineering,Semester 5,Period 2,Full Stack Web Development,62,58,4,10:00 AM - 11:00 AM,Dr. Yeshwanth Kumar,Yes,2026-10-15
+B.Tech,Artificial Intelligence & Data Science,Semester 6,Period 1,Deep Learning Foundations,60,54,6,09:00 AM - 10:00 AM,Prof. Ananya Iyer,Yes,2026-10-15
+B.Tech,Computer Science & Engineering,Semester 7,Period 3,Cloud Architecture,65,59,6,11:15 AM - 12:15 PM,Dr. Ramesh Sharma,Yes,2026-10-15
+B.Tech,Electronics & Communication Engineering,Semester 7,Period 4,Embedded IoT Architecture,58,50,8,01:00 PM - 02:00 PM,Prof. Rajesh Verma,Yes,2026-10-14
+B.Tech,Information Technology,Semester 8,Period 5,Information Retrieval Systems,64,60,4,02:00 PM - 03:00 PM,Dr. Priya Nair,Yes,2026-10-14
+B.Tech,Mechanical Engineering,Semester 4,Period 6,Thermodynamics & Heat Transfer,55,47,8,03:15 PM - 04:15 PM,Prof. Vikram Reddy,No,2026-10-14

@@ -1,0 +1,78 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Check if user is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Check if authenticated user has admin role in the users collection or admin custom claim
+    function isAdmin() {
+      return isAuthenticated() && (
+        request.auth.token.admin == true ||
+        (exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+         get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin')
+      );
+    }
+
+    // Check if user is accessing their own document
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // Users Collection (Stores user accounts and RBAC roles)
+    match /users/{userId} {
+      // User can read own doc; Admin can read all user docs
+      allow read: if isAuthenticated() && (isOwner(userId) || isAdmin());
+      // New user can create their initial profile as student/faculty
+      allow create: if isAuthenticated() && (
+        isOwner(userId) && request.resource.data.role != 'admin'
+      ) || isAdmin();
+      // Only an Admin can update roles or user docs; users can only update non-role profile fields
+      allow update: if isAdmin() || (
+        isOwner(userId) && request.resource.data.role == resource.data.role
+      );
+      // Only Admin can delete users
+      allow delete: if isAdmin();
+    }
+
+    // Attendance Records: All authenticated users can read; only Admin can create, edit, delete
+    match /attendance/{attendanceId} {
+      allow read: if isAuthenticated();
+      allow write: if isAdmin();
+    }
+
+    // Faculty Records: All authenticated users can read; only Admin can create, edit, delete
+    match /faculty/{facultyId} {
+      allow read: if isAuthenticated();
+      allow write: if isAdmin();
+    }
+
+    // Students Collection:
+    // - Students can register their own record
+    // - Authenticated users can read
+    // - Only Admin can approve, reject, edit, or delete
+    match /students/{studentId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated();
+      allow update, delete: if isAdmin();
+    }
+
+    // Feedbacks Collection:
+    // - Authenticated users/students can create feedback
+    // - All authenticated users can read feedback
+    // - Only Admin can edit or delete feedback
+    match /feedbacks/{feedbackId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated();
+      allow update, delete: if isAdmin();
+    }
+
+    // System Settings & KPI Weights: Only Admin can write
+    match /settings/{settingId} {
+      allow read: if isAuthenticated();
+      allow write: if isAdmin();
+    }
+  }
+}
